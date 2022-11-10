@@ -10,8 +10,8 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var questionTextView: TextView
-    lateinit var answerView: EditText
+    lateinit var questionTextView : TextView
+    lateinit var answerView : EditText
 
     var firstNumber = 0
     var secondNumber = 0
@@ -21,32 +21,44 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         questionTextView = findViewById(R.id.questionTextView)
-        answerView = findViewById(R.id.answerText)
+        answerView = findViewById(R.id.answerEditText)
 
         val button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            checkAnswer()
+            checkAnswerAndStartAnswerActivity()
         }
 
         setNewQuestion()
     }
 
-    fun checkAnswer() {
+    override fun onResume() {
+        super.onResume()
+
+        answerView.setText(" ")
+        setNewQuestion()
+    }
+
+
+    fun checkAnswerAndStartAnswerActivity() {
         val answerText = answerView.text.toString()
         val answer = answerText.toIntOrNull()
         val correctAnswer = firstNumber + secondNumber
 
-        if (answer == correctAnswer) {
-            Log.d("!!!", "Rätt svar")
-        } else {
-            Log.d("!!!", "Fel svar")
+        var answeredCorrect = false
+        if(answer == correctAnswer) {
+            answeredCorrect = true
         }
 
+        // skapa ett intent-objekt, i detta objekt skickar vi in vilken klass
+        // vår nya aktivitet är av
         val intent = Intent(this, AnswerActivity::class.java)
-        startActivity(intent)
 
+        //lägg in extra information i intentet
+        intent.putExtra("answeredCorrect", answeredCorrect)
+
+        // starta den nya aktivteten med hjälp av intetntet
+        startActivity(intent)
     }
 
     fun setNewQuestion() {
