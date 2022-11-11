@@ -35,16 +35,15 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        answerView.setText(" ")
+        answerView.setText("")
         setNewQuestion()
     }
-
 
     fun checkAnswerAndStartAnswerActivity() {
         val answerText = answerView.text.toString()
         val answer = answerText.toIntOrNull()
         val correctAnswer = firstNumber + secondNumber
-
+5
         var answeredCorrect = false
         if(answer == correctAnswer) {
             answeredCorrect = true
@@ -62,8 +61,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setNewQuestion() {
-        firstNumber = (1..10).random()
-        secondNumber = (1..10).random()
+        firstNumber = (1..20).random()
+        secondNumber = (1..20).random()
 
         questionTextView.text = "$firstNumber + $secondNumber"
 
