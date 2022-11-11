@@ -22,7 +22,7 @@
         <activity
             android:name=".AnswerActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".WelcomeActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -40,6 +40,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
